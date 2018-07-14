@@ -5,5 +5,6 @@ read line
 
 echo "$line"
 
-docker run -d -p 1313:1313 --name=hxdblogserver -e HUGO_BASE_URL=$line hxdbolg:v1.0.0
+docker run -p 1313:1313 --name=hxdblogserver -e HUGO_BASE_URL="$line" hxdbolg:v1.0.0 
+
 
