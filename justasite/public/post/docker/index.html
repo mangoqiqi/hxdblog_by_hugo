@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="utf-8" />
+
+  
+  <title>Docker</title>
+
+  
+  
+
+
+
+
+
+  
+  <meta name="author" content="hxd" />
+  <meta name="description" content="今日学习  docker常用命令 dockerfile dockercompose  Docker 常用的命令
+docker pull 拉取一个镜像 docker kill 杀死一个docker进程 docker images 列出所有镜像 docker push 把镜像提交 docker tag 给镜像打上标签 docker run 运行一个镜像 docker ps 列出正在运行的docker进程  比如：
+下载镜像 docker pull registry.saas.handchina.com/tools/mysql:latest 镜像创建容器 docker@hand-mirror:~$ docker create -it 9546ca122d3a 设置标签 docker@hand-mirror:~$ docker tag registry.saas.hand-china.com/tools/mysql mysqltest 启动MySQL容器 docker@hand-mirror:~$ docker run --name mysqlserver -e MYSQL_ROOT_PASSWORD=123456 -d -i -p 3306:3306 9546ca122d3a 查看运行的容器： docker ps CONTAINER ID IMAGE COMMAND CREATED STATUS PORTS NAMES 33d6e08797d0 9546ca122d3a &amp;quot;docker-entrypoint." />
+
+  
+  
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@#" />
+    <meta name="twitter:title" content="Docker" />
+    <meta name="twitter:description" content="今日学习  docker常用命令 dockerfile dockercompose  Docker 常用的命令
+docker pull 拉取一个镜像 docker kill 杀死一个docker进程 docker images 列出所有镜像 docker push 把镜像提交 docker tag 给镜像打上标签 docker run 运行一个镜像 docker ps 列出正在运行的docker进程  比如：
+下载镜像 docker pull registry.saas.handchina.com/tools/mysql:latest 镜像创建容器 docker@hand-mirror:~$ docker create -it 9546ca122d3a 设置标签 docker@hand-mirror:~$ docker tag registry.saas.hand-china.com/tools/mysql mysqltest 启动MySQL容器 docker@hand-mirror:~$ docker run --name mysqlserver -e MYSQL_ROOT_PASSWORD=123456 -d -i -p 3306:3306 9546ca122d3a 查看运行的容器： docker ps CONTAINER ID IMAGE COMMAND CREATED STATUS PORTS NAMES 33d6e08797d0 9546ca122d3a &amp;quot;docker-entrypoint." />
+    <meta name="twitter:image" content="http://192.168.99.100:1313/img/avatar.jpg" />
+  
+
+  
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Docker" />
+  <meta property="og:description" content="今日学习  docker常用命令 dockerfile dockercompose  Docker 常用的命令
+docker pull 拉取一个镜像 docker kill 杀死一个docker进程 docker images 列出所有镜像 docker push 把镜像提交 docker tag 给镜像打上标签 docker run 运行一个镜像 docker ps 列出正在运行的docker进程  比如：
+下载镜像 docker pull registry.saas.handchina.com/tools/mysql:latest 镜像创建容器 docker@hand-mirror:~$ docker create -it 9546ca122d3a 设置标签 docker@hand-mirror:~$ docker tag registry.saas.hand-china.com/tools/mysql mysqltest 启动MySQL容器 docker@hand-mirror:~$ docker run --name mysqlserver -e MYSQL_ROOT_PASSWORD=123456 -d -i -p 3306:3306 9546ca122d3a 查看运行的容器： docker ps CONTAINER ID IMAGE COMMAND CREATED STATUS PORTS NAMES 33d6e08797d0 9546ca122d3a &amp;quot;docker-entrypoint." />
+  <meta property="og:url" content="http://192.168.99.100:1313/post/docker/" />
+  <meta property="og:image" content="http://192.168.99.100:1313/img/avatar.jpg" />
+
+
+
+
+<meta name="generator" content="Hugo 0.42.2" />
+
+
+<link rel="canonical" href="http://192.168.99.100:1313/post/docker/" />
+<link rel="alternative" href="/index.xml" title="hxd" type="application/atom+xml" />
+
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="format-detection" content="telephone=no,email=no,adress=no" />
+<meta http-equiv="Cache-Control" content="no-transform" />
+
+
+<meta name="robots" content="index,follow" />
+<meta name="referrer" content="origin-when-cross-origin" />
+<meta name="google-site-verification" content="_moDmnnBNVLBN1rzNxyGUGdPHE20YgbmrtzLIbxaWFc" />
+<meta name="msvalidate.01" content="22596E34341DD1D17D6022C44647E587" />
+
+
+
+
+
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="hxd" />
+<meta name="msapplication-tooltip" content="hxd" />
+<meta name='msapplication-navbutton-color' content="#5fbf5e" />
+<meta name="msapplication-TileColor" content="#5fbf5e" />
+<meta name="msapplication-TileImage" content="/img/tile-image-windows.png" />
+<link rel="icon" href="/img/favicon.ico" />
+<link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png" />
+<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png" />
+<link rel="icon" sizes="192x192" href="/img/touch-icon-android.png" />
+<link rel="apple-touch-icon" href="/img/touch-icon-apple.png" />
+<link rel="mask-icon" href="/img/safari-pinned-tab.svg" color="#5fbf5e" />
+
+
+
+<link rel="stylesheet" href="//cdn.bootcss.com/video.js/6.2.8/alt/video-js-cdn.min.css" />
+
+<link rel="stylesheet" href="/css/bundle.ff02473a9a.css" />
+
+
+  
+  <!--[if lt IE 9]>
+    <script src="//cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <script src="//cdn.bootcss.com/video.js/6.2.8/ie8/videojs-ie8.min.js"></script>
+  <![endif]-->
+
+<!--[if lte IE 11]>
+    <script src="//cdn.bootcss.com/classlist/1.1.20170427/classList.min.js"></script>
+  <![endif]-->
+
+
+<script src="//cdn.bootcss.com/object-fit-images/3.2.3/ofi.min.js"></script>
+
+
+<script src="//cdn.bootcss.com/smooth-scroll/12.1.4/js/smooth-scroll.polyfills.min.js"></script>
+
+
+</head>
+  <body>
+    
+    <div class="suspension">
+      <a title="Go to top" class="to-top is-hide"><span class="icon icon-up"></span></a>
+      
+        
+      
+    </div>
+    
+    
+  <header class="site-header">
+  <img class="avatar" src="/img/avatar.jpg" alt="Avatar">
+  
+  <h2 class="title">hxd</h2>
+  
+  <p class="subtitle">say something</p>
+  <button class="menu-toggle" type="button">
+    <span class="icon icon-menu"></span>
+  </button>
+  <nav class="site-menu collapsed">
+    <h2 class="offscreen">Main Menu</h2>
+    <ul class="menu-list">
+      
+      
+      
+      
+        <li class="menu-item
+            
+            
+            
+              is-active
+            ">
+            <a href="/">Home</a>
+          </li>
+      
+        <li class="menu-item
+            
+            
+            ">
+            <a href="https://github.com/">Works</a>
+          </li>
+      
+        <li class="menu-item
+            
+            
+            ">
+            <a href="/tags/">Tags</a>
+          </li>
+      
+        <li class="menu-item
+            
+            
+            ">
+            <a href="/about/">About</a>
+          </li>
+      
+        <li class="menu-item
+            
+            
+            ">
+            <a href="/links/">Link</a>
+          </li>
+      
+    </ul>
+  </nav>
+  <nav class="social-menu collapsed">
+    <h2 class="offscreen">Social Networks</h2>
+    <ul class="social-list">
+
+      
+      <li class="social-item">
+        <a href="mailto:#" title="Email"><span class="icon icon-email"></span></a>
+      </li>
+
+      
+      <li class="social-item">
+        <a href="//github.com/#" title="GitHub"><span class="icon icon-github"></span></a>
+      </li>
+
+      <li class="social-item">
+        <a href="//twitter.com/#" title="Twitter"><span class="icon icon-twitter"></span></a>
+      </li>
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <li class="social-item">
+        <a href="//weibo.com/#" title="Weibo"><span class="icon icon-weibo"></span></a>
+      </li>
+
+      <li class="social-item">
+        <a href="#" title="Wechat"><span class="icon icon-wechat"></span></a>
+      </li>
+
+      <li class="social-item">
+        <a href="//www.linkedin.com/in/#" title="Linkedin"><span class="icon icon-linkedin"></span></a>
+      </li>
+
+      
+
+      
+
+      
+
+      <li class="social-item">
+        <a href="/index.xml"><span class="icon icon-rss" title="RSS"></span></a>
+      </li>
+
+    </ul>
+  </nav>
+</header>
+
+  <section class="main post-detail">
+    <header class="post-header">
+      <h1 class="post-title">Docker</h1>
+      <p class="post-meta">@hxd · Jan 1, 0001 · 2 min read</p>
+    </header>
+    <article class="post-content">
+
+<h1 id="今日学习">今日学习</h1>
+
+<ul>
+<li>docker常用命令</li>
+<li>dockerfile</li>
+<li>dockercompose</li>
+</ul>
+
+<h3 id="docker">Docker</h3>
+
+<p>常用的命令</p>
+
+<pre><code>docker pull      拉取一个镜像
+docker kill      杀死一个docker进程
+docker images    列出所有镜像
+docker push      把镜像提交
+docker tag       给镜像打上标签
+docker run       运行一个镜像
+docker ps        列出正在运行的docker进程
+</code></pre>
+
+<p>比如：</p>
+
+<pre><code>下载镜像
+docker pull registry.saas.handchina.com/tools/mysql:latest
+
+
+镜像创建容器
+docker@hand-mirror:~$ docker create -it 9546ca122d3a
+
+设置标签
+docker@hand-mirror:~$ docker tag registry.saas.hand-china.com/tools/mysql mysqltest
+
+
+启动MySQL容器
+docker@hand-mirror:~$ docker run --name mysqlserver -e MYSQL_ROOT_PASSWORD=123456 -d -i -p 3306:3306  9546ca122d3a
+
+查看运行的容器：
+docker ps
+CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                NAMES
+33d6e08797d0        9546ca122d3a        &quot;docker-entrypoint.s…&quot;   17 minutes ago      Up 17 minutes       0.0.0.0:3306-&gt;3306/tcp   mysqlserver
+
+c8fe6f1b2c11        5766334bdaa0        &quot;nginx -g 'daemon of…&quot;   About an hour ago   Up About an hour    80/tcp, 443/tcp          elated_fermi
+
+
+进入MySQL终端
+docker@hand-mirror:~$ docker exec -it 33d6e08797d066f2ace07908dad3a104837e0ea4300fcf299bb753d920ba05d2 /bin/bash
+root@33d6e08797d0:/# ls
+bin   docker-entrypoint-initdb.d  home   media  proc  sbin  tmp
+boot  entrypoint.sh               lib    mnt    root  srv   usr
+dev   etc                         lib64  opt    run   sys   var
+
+停止容器：
+docker@hand-mirror:~$ docker stop 33d6e08797d0
+
+
+删除容器：
+docker@hand-mirror:~$ docker rm 33d6e08797d0
+
+docker@hand-mirror:~$ docker container ls
+CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS               NAMES
+c8fe6f1b2c11        5766334bdaa0        &quot;nginx -g 'daemon of…&quot;   About an hour ago   Up About an hour    80/tcp, 443/tcp     elated_fermi
+
+提交一个镜像：
+docker@hand-mirror:~$ docker commit mysqlserver
+
+</code></pre>
+
+<p>docker create命令能够基于镜像创建容器。
+该命令执行的效果类似于docker run -d，即创建一个将在系统后台运行的容器。
+但是与docker run -d不同的是，docker create创建的容器并未实际启动，还需要执行docker start命令或docker run命令以启动容器。
+事实上，docker create命令常用于在启动容器之前进行必要的设置。</p>
+
+<h2 id="docker-compose">Docker-compose</h2>
+
+<p>Compose 通过一个配置文件来管理多个Docker容器，在配置文件中，所有的容器通过services来定义，然后使用docker-compose脚本来启动，停止和重启应用，和应用中的服务以及所有依赖服务的容器，非常适合组合使用多个容器进行开发的场景.
+基本命令：</p>
+
+<pre><code>$ alias dc=docker-compose(设置别名)
+$ dc build 命令用来创建或重新创建服务使用的镜像
+$ dc kill 命令用于通过向容器发送SIGKILL信号强行停止服务
+$ dc logs 命令用于展示service的日志
+$ dc pause 暂停服务
+$ dc unpause 恢复被暂停的服务
+$ dc port 命令用于查看服务中的端口被映射到了宿主机的哪个端口上，使用这条命令时必须通知指定服务名称和内部端口号
+$ dc ps 用于显示当前项目下的容器
+$ dc pull 用于拉取服务依赖的镜像
+$ dc restart 用于重启某个服务的所有容器，后跟服务名
+$ dc run 命令用于在服务中运行一个一次性的命令。使用这个命令会新建一个容器，其配置和service的配置一样，也就是说新建的容器和service启动的容器有相同的volumes，links等
+$ dc start命令启动运行某个服务的所有容器
+$ dc stop命令停止运行一个服务的所有容器
+$ dc up 创建并运行作为服务的容器，并将其输入输出重定向到控制台(attach)，并将所有容器的输出合并到一起。命令退出后，所有的容器都会停止
+如果--link依赖的容器没有运行则运行依赖的容器； 
+-d标识指定容器后台运行
+如果已经存在服务的容器，且容器创建后服务的配置有变化，就重新创建容器。如果没有变化，默认不会重新创建容器
+--force-recreate标识指定即使服务配置没有变化，也重新创建容器； 
+--no-recreate标识表示如果服务的容器已经存在，不要重新创建它们；
+</code></pre>
+
+<p>新建一个docker-compose.yml文件：集合了一个nginx和mysql还有一个hello镜像。</p>
+
+<pre><code>version: &quot;3&quot;
+services:
+  nginx:
+    image: &quot;103249542274&quot;
+    ports: 
+      - &quot;8080:80&quot;
+  hello:
+    image: &quot;2cb0d9787c4d&quot;
+  mysql: 
+    image: &quot;15a5ee56ec55&quot;
+    ports:
+      - &quot;3306:3306&quot;
+    restart: always
+    environment:
+        - MYSQL_DATABASE=demodb
+        - MYSQL_ROOT_PASSWORD=123456
+</code></pre>
+
+<p>从docker-compose.yml文件看文件的构成和语法：
+<strong>image：</strong>指定的镜像名或者镜像ID。如果在本地不存在该镜像，compose将会尝试区pull这个镜像。
+<strong>bulid：</strong>指定Dockerfile所在文件夹的路径。 Compose     将会利用它自动构建这个镜像，然后使用这 个镜像。
+<strong>command：</strong>覆盖容器后默认执行的命令。
+<strong>links：</strong>链接到其它服务中的容器。使用服务名称（同时作为别名）或服务名称：服务别名  （SERVICE:ALIAS）     格式都可以。
+<strong>ports：</strong>暴露端口信息。
+不止以上端口。</p>
+
+<h3 id="总结">总结</h3>
+
+<p>compose通过该文件来组织多个容器，使之能够便捷的搭建一个功能强大的服务。
+如何理解docker-compose编排容器呢。例如，有一个php镜像，一个mysql镜像，一个nginx镜像。如果没有docker-compose，那么每次启动的时候，我们需要敲各个容器的启动参数，环境变量，容器命名，指定不同容器的链接参数等等一系列的操作，相当繁琐。而用了docker-composer之后，就可以把这些命令一次性写在docker-composer.yml文件中，以后每次启动这一整个环境（含3个容器）的时候，你只要敲一个docker-composer up命令就ok了。
+docker-composer.yml 文件里的build命令有时会使用Dockerfile文件来构建镜像，这个特点就是Dockerfile和docker-compose.yml的联系。</p>
+
+<p><a href="https://mangoqiqi.github.io/2018/07/13/Git%E8%AF%95%E9%A2%98/">Git题目详解</a> 持续更新&hellip;</p>
+</article>
+    <footer class="post-footer">
+      
+      <p class="post-copyright">
+        © This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.This post was published <strong>736888</strong> days ago, content in the post may be inaccurate, even wrong now, please take risk yourself.
+      </p>
+    </footer>
+    
+      
+    
+  </section>
+  <footer class="site-footer">
+  <p>© 2017-2018 hxd</p>
+  <p>Powered by <a href="https://gohugo.io/" target="_blank">Hugo</a> with theme <a href="https://github.com/laozhu/hugo-nuo" target="_blank">Nuo</a>.</p>
+  
+</footer>
+
+
+
+<script async src="//cdn.bootcss.com/video.js/6.2.8/alt/video.novtt.min.js"></script>
+<script async src="//cdn.bootcss.com/mathjax/2.7.2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      displayMath: [['$$','$$'], ['\\[','\\]']],
+      processEscapes: true,
+      processEnvironments: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+      TeX: { equationNumbers: { autoNumber: "AMS" },
+      extensions: ["AMSmath.js", "AMSsymbols.js"] }
+    }
+  });
+</script>
+<script type="text/x-mathjax-config">
+  // Fix <code> tags after MathJax finishes running. This is a
+  // hack to overcome a shortcoming of Markdown. Discussion at
+  // https://github.com/mojombo/jekyll/issues/199
+  MathJax.Hub.Queue(() => {
+    MathJax.Hub.getAllJax().map(v => v.SourceElement().parentNode.className += ' has-jax');
+  });
+</script>
+
+<script src="/js/bundle.d1288006cf.js"></script>
+
+
+
+
+  </body>
+</html>

@@ -4,7 +4,7 @@ title = "hxd"
 theme = "hugo-nuo"
 enableRobotsTXT = true
 PygmentsCodeFences = true
-canonifyurls = true
+#canonifyurls = true
 
 
 # Copyright of your post

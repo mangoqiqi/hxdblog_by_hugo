@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>hxd</title>
+    <link>http://192.168.99.100:1313/</link>
+    <description>Recent content on hxd</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.</copyright>
+    <lastBuildDate>Wed, 09 Apr 2014 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://192.168.99.100:1313/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>About</title>
+      <link>http://192.168.99.100:1313/about/</link>
+      <pubDate>Wed, 09 Apr 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://192.168.99.100:1313/about/</guid>
+      <description>hello world!</description>
+    </item>
+    
+    <item>
+      <title>Link</title>
+      <link>http://192.168.99.100:1313/links/</link>
+      <pubDate>Wed, 09 Apr 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://192.168.99.100:1313/links/</guid>
+      <description>nothing</description>
+    </item>
+    
+    <item>
+      <title>Docker</title>
+      <link>http://192.168.99.100:1313/post/docker/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://192.168.99.100:1313/post/docker/</guid>
+      <description>今日学习  docker常用命令 dockerfile dockercompose  Docker 常用的命令
+docker pull 拉取一个镜像 docker kill 杀死一个docker进程 docker images 列出所有镜像 docker push 把镜像提交 docker tag 给镜像打上标签 docker run 运行一个镜像 docker ps 列出正在运行的docker进程  比如：
+下载镜像 docker pull registry.saas.handchina.com/tools/mysql:latest 镜像创建容器 docker@hand-mirror:~$ docker create -it 9546ca122d3a 设置标签 docker@hand-mirror:~$ docker tag registry.saas.hand-china.com/tools/mysql mysqltest 启动MySQL容器 docker@hand-mirror:~$ docker run --name mysqlserver -e MYSQL_ROOT_PASSWORD=123456 -d -i -p 3306:3306 9546ca122d3a 查看运行的容器： docker ps CONTAINER ID IMAGE COMMAND CREATED STATUS PORTS NAMES 33d6e08797d0 9546ca122d3a &amp;quot;docker-entrypoint.</description>
+    </item>
+    
+    <item>
+      <title>Hello</title>
+      <link>http://192.168.99.100:1313/post/hello-world/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://192.168.99.100:1313/post/hello-world/</guid>
+      <description>hello world!
+The remaining content of your post.</description>
+    </item>
+    
+    <item>
+      <title>Test</title>
+      <link>http://192.168.99.100:1313/post/test/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://192.168.99.100:1313/post/test/</guid>
+      <description>&lt;p&gt;Cut out summary from your post content here.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
