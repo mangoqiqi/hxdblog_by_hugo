@@ -1,2 +1,2 @@
-docker kill hxdblogserver
-docker rm hxdblogserver
+docker kill hugoblogserver
+docker rm hugoblogserver
