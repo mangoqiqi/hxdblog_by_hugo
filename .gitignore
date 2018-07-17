@@ -1,0 +1,5 @@
+.idea
+config.toml
+*.bak
+public/
+ip_for_run
